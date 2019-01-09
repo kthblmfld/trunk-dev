@@ -1,5 +1,6 @@
 package com.dev9.trunkdev;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +15,16 @@ import java.util.Map;
 @RestController
 public class TrunkDevResource {
 
+    @Value("${orders.repository}")
+    String repo = "legacyOrdersRepo";
+
     @GetMapping("/orders/{orderId}")
     @Produces(MediaType.APPLICATION_JSON)
     public ResponseEntity getOrderId(@PathVariable("orderId") String orderId) {
 
         Map<String,String> responseBody = new HashMap<>();
         responseBody.put("Legacy", orderId);
+        responseBody.put("Repo", repo);
         return new ResponseEntity<Map>(responseBody, HttpStatus.OK);
     }
 }
