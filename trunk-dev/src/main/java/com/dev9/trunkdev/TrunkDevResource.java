@@ -20,6 +20,6 @@ public class TrunkDevResource {
 
         Map<String,String> responseBody = new HashMap<>();
         responseBody.put("Legacy", orderId);
-        return new ResponseEntity(responseBody, HttpStatus.OK);
+        return new ResponseEntity<Map>(responseBody, HttpStatus.OK);
     }
 }
